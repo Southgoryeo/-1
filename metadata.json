@@ -1,0 +1,6 @@
+{
+  "name": "접지회 (接地會) | 기계는 대신할 수 있다. 그러나 책임질 수는 없다.",
+  "description": "2035년 AI 시대에 태어난 접촉과 책임의 종교, 접지회(THE GROUNDED) 공식 포털. 중심 교리, 5대 의례, 성소 접지소 안내, 대리죄 판별기 및 일상 접지록.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
