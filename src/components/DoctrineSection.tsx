@@ -11,6 +11,7 @@ export const DoctrineSection: React.FC = () => {
   const [showResult, setShowResult] = useState<boolean>(false);
 
   const selectedScenario = DISCERNING_SCENARIOS.find(s => s.id === selectedScenarioId) || DISCERNING_SCENARIOS[0];
+  const guessedCorrectly = (userGuess === 'sin') === selectedScenario.isDelegationSin;
 
   const handleScenarioChange = (id: string) => {
     setSelectedScenarioId(id);
@@ -87,12 +88,9 @@ export const DoctrineSection: React.FC = () => {
 
             {/* AI vs Human Contrast Table (Slide 6) */}
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <h4 className="text-lg font-serif text-[#EBE6DF]">
-                  인간관 — 접지된 존재 (접촉과 흔적의 대조)
-                </h4>
-                <span className="text-xs text-[#8C8479] font-mono">SLIDE 06 COMPARISON</span>
-              </div>
+              <h4 className="text-lg font-serif text-[#EBE6DF]">
+                인간관 — 접지된 존재 (접촉과 흔적의 대조)
+              </h4>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#2D2A26] border border-[#2D2A26]">
                 
@@ -310,6 +308,12 @@ export const DoctrineSection: React.FC = () => {
                         </div>
                       )}
                     </div>
+
+                    <p className="text-xs font-mono text-[#8C8479]">
+                      {guessedCorrectly
+                        ? '당신의 분별은 교단의 판정과 같았습니다.'
+                        : '당신의 분별은 교단의 판정과 달랐습니다.'}
+                    </p>
 
                     <div className="p-4 bg-[#181615] border border-[#2D2A26] space-y-2 text-sm text-[#C7C0B5] leading-relaxed">
                       <div className="text-xs font-mono text-[#8C8479] uppercase">

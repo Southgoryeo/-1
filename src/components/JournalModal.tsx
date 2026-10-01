@@ -23,11 +23,15 @@ export const JournalModal: React.FC<JournalModalProps> = ({ isOpen, onClose, onA
     e.preventDefault();
     if (!title.trim() || !content.trim() || !resistanceFelt.trim()) return;
 
+    // Local date, not UTC, so early-morning entries are not dated the day before
+    const now = new Date();
+    const pad = (n: number) => String(n).padStart(2, '0');
+
     const newLog: GroundingLog = {
-      id: `user-log-${Date.now()}`,
+      id: `user-log-${now.getTime()}`,
       name: name.trim() || '무명의 접지자',
       role,
-      date: new Date().toISOString().slice(0, 10).replace(/-/g, '.'),
+      date: `${now.getFullYear()}.${pad(now.getMonth() + 1)}.${pad(now.getDate())}`,
       category,
       title: title.trim(),
       content: content.trim(),

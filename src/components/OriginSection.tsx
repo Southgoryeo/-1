@@ -144,7 +144,7 @@ export const OriginSection: React.FC = () => {
                 </div>
 
                 <div className="p-4 bg-[#141312] border border-[#2B2824] text-xs text-[#8C8479]">
-                  <span className="text-[#D95328] font-mono">01/17</span> 접지회 교의문서고
+                  <span className="text-[#D95328] font-mono">{current.year}</span> 접지회 교의문서고
                 </div>
               </div>
 
