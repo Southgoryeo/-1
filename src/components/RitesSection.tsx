@@ -53,9 +53,10 @@ export const RitesSection: React.FC<RitesSectionProps> = ({ onOpenJournal }) => 
                 }`}
               >
                 <div>
-                  <div className="flex items-center justify-between text-xs font-mono text-[#8C8479] mb-3">
+                  {/* Card shows the short frequency only; the full schedule is in the detail view */}
+                  <div className="flex items-center justify-between gap-3 text-xs font-mono text-[#8C8479] mb-3 whitespace-nowrap">
                     <span>0{idx + 1}</span>
-                    <span>{rite.frequency}</span>
+                    <span>{rite.frequency.split(' (')[0]}</span>
                   </div>
                   <div className="text-xl font-serif text-[#F4F0E8] flex items-center gap-2">
                     <span>{rite.korean}</span>
@@ -63,7 +64,7 @@ export const RitesSection: React.FC<RitesSectionProps> = ({ onOpenJournal }) => 
                   </div>
                 </div>
 
-                <div className="text-xs text-[#9E968A] line-clamp-2 mt-2 leading-relaxed">
+                <div className="text-xs text-[#9E968A] line-clamp-3 mt-2 leading-relaxed">
                   {rite.summary}
                 </div>
               </button>
