@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { HomeOverviewSection } from './components/HomeOverviewSection';
@@ -22,12 +22,23 @@ import { GroundingLog } from './types';
 import { INITIAL_GROUNDING_LOGS } from './data/groundedData';
 import { LayoutList, Columns } from 'lucide-react';
 
+const SECTION_TO_TAB: Record<string, string> = {
+  journal: 'community',
+  dialogue: 'community',
+};
+
+const TAB_TO_ANCHOR: Record<string, string> = {
+  home: 'hero',
+  community: 'journal',
+};
+
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('home');
   const [viewMode, setViewMode] = useState<'paged' | 'all'>('paged');
   const [isJournalModalOpen, setIsJournalModalOpen] = useState(false);
   const [isVisitModalOpen, setIsVisitModalOpen] = useState(false);
   const [logs, setLogs] = useState<GroundingLog[]>(INITIAL_GROUNDING_LOGS);
+  const pendingAnchor = useRef<string | null>(null);
 
   // Load stored logs
   const loadLogs = () => {
@@ -52,17 +63,34 @@ export default function App() {
     return () => window.removeEventListener('storage', loadLogs);
   }, []);
 
-  const handleTabChange = (tabId: string) => {
+  const handleTabChange = (targetId: string) => {
+    // Section anchors that live inside a tab rather than being tabs themselves
+    const tabId = SECTION_TO_TAB[targetId] ?? targetId;
     setActiveTab(tabId);
+
     if (viewMode === 'all') {
-      const el = document.getElementById(tabId);
+      const el = document.getElementById(TAB_TO_ANCHOR[targetId] ?? targetId);
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
         return;
       }
+    } else if (tabId !== targetId) {
+      if (tabId === activeTab) {
+        document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // The section only exists once its tab has rendered
+        pendingAnchor.current = targetId;
+      }
+      return;
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    if (!pendingAnchor.current) return;
+    document.getElementById(pendingAnchor.current)?.scrollIntoView({ behavior: 'smooth' });
+    pendingAnchor.current = null;
+  }, [activeTab]);
 
   const handleAddLog = (newLog: GroundingLog) => {
     try {
