@@ -1,14 +1,6 @@
 import React from 'react';
 import { GroundedEmblem } from './GroundedEmblem';
 
-// 만든 사람들. 이 배열만 고치면 됩니다 (인원이 늘거나 줄어도 됩니다).
-const CREDITS = [
-  { name: "", role: "" },
-  { name: "", role: "" },
-  { name: "", role: "" },
-  { name: "", role: "" },
-];
-
 interface FooterProps {
   onScrollTo: (id: string) => void;
   onOpenVisitModal: () => void;
@@ -19,36 +11,7 @@ export const Footer: React.FC<FooterProps> = ({ onScrollTo, onOpenVisitModal }) 
     <footer className="bg-[#121110] border-t border-[#262421] text-[#8C8479] py-16">
       <div className="max-w-6xl mx-auto px-6 space-y-12">
 
-        {/* Production Credits */}
-        <div className="pb-12 border-b border-[#262421] space-y-6">
-          <h2 className="text-xs font-mono tracking-widest text-[#D95328]">
-            만든 사람들
-          </h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-6">
-            {CREDITS.map((credit, idx) => (
-              <li key={idx} className="space-y-1.5 min-w-0">
-                {credit.name.trim() ? (
-                  <div className="text-sm font-bold text-[#F4F0E8] break-words">{credit.name}</div>
-                ) : (
-                  <div className="text-sm font-bold text-[#8C8479]">
-                    <span className="inline-block w-24 border-b border-dashed border-[#6B635A]">이름</span>
-                  </div>
-                )}
-                {credit.role.trim() ? (
-                  <div className="text-xs text-[#A8A29A] leading-relaxed break-words">{credit.role}</div>
-                ) : (
-                  <div className="text-xs text-[#8C8479]">
-                    <span className="inline-block w-40 max-w-full border-b border-dashed border-[#6B635A]">역할</span>
-                  </div>
-                )}
-              </li>
-            ))}
-          </ul>
-          <p className="text-[11px] font-mono text-[#A8A29A]">
-            인간과 종교 · 조별 프로젝트 · 2026
-          </p>
-        </div>
-
+        
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           
           {/* Brand & Creed Column */}
@@ -128,6 +91,14 @@ export const Footer: React.FC<FooterProps> = ({ onScrollTo, onOpenVisitModal }) 
                   className="hover:text-[#F4F0E8] transition-colors cursor-pointer text-left"
                 >
                   3대 열린 질문과 토론
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onScrollTo('founders')}
+                  className="hover:text-[#F4F0E8] transition-colors cursor-pointer text-left"
+                >
+                  창시자 (만든 사람들)
                 </button>
               </li>
             </ul>
