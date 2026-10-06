@@ -12,8 +12,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onOpenVisitModal, onN
 
   const navLinks = [
     { label: '홈', id: 'home' },
+    { label: '세계관', id: 'worldview' },
     { label: '창교 연원', id: 'origin' },
     { label: '중심 교리', id: 'doctrine' },
+    { label: 'AI의 자리', id: 'ai' },
     { label: '5대 의례', id: 'rites' },
     { label: '성소 접지소', id: 'sanctuary' },
     { label: '신도 접지록', id: 'community' },
@@ -38,7 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onOpenVisitModal, onN
         </button>
 
         {/* Zone 2: 4–6 nav links, single-line typography with hover underlines */}
-        <nav className="hidden md:flex items-center gap-7 text-sm text-[#A8A29A]">
+        <nav className="hidden lg:flex items-center gap-5 xl:gap-7 text-sm text-[#A8A29A]">
           {navLinks.map((link) => {
             const isActive = activeTab === link.id;
             return (
@@ -72,7 +74,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onOpenVisitModal, onN
           {/* Mobile hamburger toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-[#A8A29A] hover:text-white cursor-pointer"
+            className="lg:hidden p-2 text-[#A8A29A] hover:text-white cursor-pointer"
             aria-label="메뉴 열기"
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -82,7 +84,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onOpenVisitModal, onN
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-[#2C2925] bg-[#161514] px-6 py-4 space-y-3">
+        <div className="lg:hidden border-b border-[#2C2925] bg-[#161514] px-6 py-4 space-y-3">
           {navLinks.map((link) => (
             <button
               key={link.id}
