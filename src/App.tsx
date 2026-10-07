@@ -7,6 +7,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { HomeOverviewSection } from './components/HomeOverviewSection';
+import { WorldviewSection } from './components/WorldviewSection';
 import { OriginSection } from './components/OriginSection';
 import { DoctrineSection } from './components/DoctrineSection';
 import { SymbolSealSection } from './components/SymbolSealSection';
@@ -15,6 +16,8 @@ import { AiTheologySection } from './components/AiTheologySection';
 import { SanctuarySection } from './components/SanctuarySection';
 import { GroundingLogSection } from './components/GroundingLogSection';
 import { OpenQuestionsSection } from './components/OpenQuestionsSection';
+import { OutreachVideoSection } from './components/OutreachVideoSection';
+import { FoundersSection } from './components/FoundersSection';
 import { Footer } from './components/Footer';
 import { JournalModal } from './components/JournalModal';
 import { VisitModal } from './components/VisitModal';
@@ -23,6 +26,7 @@ import { INITIAL_GROUNDING_LOGS } from './data/groundedData';
 import { LayoutList, Columns } from 'lucide-react';
 
 const SECTION_TO_TAB: Record<string, string> = {
+  ai: 'doctrine',
   journal: 'community',
   dialogue: 'community',
 };
@@ -151,6 +155,7 @@ export default function App() {
               onScrollTo={handleTabChange}
               onOpenJournalModal={() => setIsJournalModalOpen(true)}
             />
+            <WorldviewSection />
             <OriginSection />
             <DoctrineSection />
             <SymbolSealSection />
@@ -165,6 +170,8 @@ export default function App() {
               onOpenJournalModal={() => setIsJournalModalOpen(true)}
             />
             <OpenQuestionsSection />
+            <OutreachVideoSection />
+            <FoundersSection />
           </>
         ) : (
           /* Clean Chapter / Paged Mode (Default: Compact & Paced) */
@@ -181,7 +188,14 @@ export default function App() {
                   onOpenVisitModal={() => setIsVisitModalOpen(true)}
                   recentLogs={logs}
                 />
+                <OutreachVideoSection />
               </>
+            )}
+
+            {activeTab === 'worldview' && (
+              <div className="pt-4">
+                <WorldviewSection />
+              </div>
             )}
 
             {activeTab === 'origin' && (
@@ -211,6 +225,12 @@ export default function App() {
                 <SanctuarySection
                   onOpenVisitModal={() => setIsVisitModalOpen(true)}
                 />
+              </div>
+            )}
+
+            {activeTab === 'founders' && (
+              <div className="pt-4">
+                <FoundersSection />
               </div>
             )}
 

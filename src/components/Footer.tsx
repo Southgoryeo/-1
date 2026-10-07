@@ -10,6 +10,7 @@ export const Footer: React.FC<FooterProps> = ({ onScrollTo, onOpenVisitModal }) 
   return (
     <footer className="bg-[#121110] border-t border-[#262421] text-[#8C8479] py-16">
       <div className="max-w-6xl mx-auto px-6 space-y-12">
+
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           
@@ -90,6 +91,14 @@ export const Footer: React.FC<FooterProps> = ({ onScrollTo, onOpenVisitModal }) 
                   className="hover:text-[#F4F0E8] transition-colors cursor-pointer text-left"
                 >
                   3대 열린 질문과 토론
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onScrollTo('founders')}
+                  className="hover:text-[#F4F0E8] transition-colors cursor-pointer text-left"
+                >
+                  창시자 (만든 사람들)
                 </button>
               </li>
             </ul>
