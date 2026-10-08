@@ -2,10 +2,9 @@ import React from 'react';
 
 // 만든 사람들. 이 배열만 고치면 됩니다 (인원이 늘거나 줄어도 됩니다).
 const CREDITS = [
-  { name: "", role: "" },
-  { name: "", role: "" },
-  { name: "", role: "" },
-  { name: "", role: "" },
+  { name: "서관우", role: "사이트 제작, 종교 구체화" },
+  { name: "신가림", role: "피드백 정리 및 수용, 종교 구체화, 종교 설계" },
+  { name: "정우진", role: "노래 제작, PPT 제작, 종교 아이디어 제시" },
 ];
 
 export const FoundersSection: React.FC = () => {
@@ -26,7 +25,7 @@ export const FoundersSection: React.FC = () => {
           </p>
         </div>
 
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {CREDITS.map((credit, idx) => (
             <li key={idx} className="p-6 sm:p-8 bg-[#181615] border border-[#2C2925] space-y-3 min-w-0">
               <div className="text-xs font-mono text-[#D95328]">
