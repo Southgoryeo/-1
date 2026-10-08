@@ -16,7 +16,6 @@ import { AiTheologySection } from './components/AiTheologySection';
 import { SanctuarySection } from './components/SanctuarySection';
 import { GroundingLogSection } from './components/GroundingLogSection';
 import { OpenQuestionsSection } from './components/OpenQuestionsSection';
-import { OutreachVideoSection } from './components/OutreachVideoSection';
 import { FoundersSection } from './components/FoundersSection';
 import { Footer } from './components/Footer';
 import { JournalModal } from './components/JournalModal';
@@ -170,7 +169,6 @@ export default function App() {
               onOpenJournalModal={() => setIsJournalModalOpen(true)}
             />
             <OpenQuestionsSection />
-            <OutreachVideoSection />
             <FoundersSection />
           </>
         ) : (
@@ -188,7 +186,6 @@ export default function App() {
                   onOpenVisitModal={() => setIsVisitModalOpen(true)}
                   recentLogs={logs}
                 />
-                <OutreachVideoSection />
               </>
             )}
 
